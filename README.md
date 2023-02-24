@@ -78,5 +78,4 @@ https://github.com/eliangcs/pystock-data
     git clone https://github.com/eliangcs/pystock-data
 
     cd ~/git/cache-dollars
-    psql create_tables.sql
     sh load_data.sh
