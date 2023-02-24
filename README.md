@@ -66,6 +66,10 @@ https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
     sudo systemctl start mongod
     sudo systemctl status mongod
 
+https://www.digitalocean.com/community/tutorials/how-to-install-memsql-on-ubuntu-14-04
+
+    TBD
+
 # data
 
 https://github.com/eliangcs/pystock-data
