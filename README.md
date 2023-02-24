@@ -14,6 +14,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ub
 https://www.rosehosting.com/blog/how-to-install-phppgadmin-on-ubuntu-20-04/
 
     sudo apt install phppgadmin php-pgsql -y
+    sudo apt install apache2 php libapache2-mod-php -y
     sudo vi /etc/apache2/sites-enabled/phppgadmin.conf
     
     Alias /phppgadmin /usr/share/phppgadmin
@@ -39,6 +40,8 @@ https://www.rosehosting.com/blog/how-to-install-phppgadmin-on-ubuntu-20-04/
          </IfModule>
        </IfModule>
     </Directory>
+    
+    sudo apachectl restart
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
 
