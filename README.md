@@ -43,6 +43,11 @@ https://www.rosehosting.com/blog/how-to-install-phppgadmin-on-ubuntu-20-04/
     
     sudo apachectl restart
 
+    sudo vi /etc/apache2/conf-enabled/phppgadmin.conf ## allow connections
+    sudo apachectl restart
+    psql -c 'ALTER USER ubuntu WITH PASSWORD 'test';'
+
+
 https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
 
     sudo apt install redis-server
