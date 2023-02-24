@@ -11,6 +11,35 @@ https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ub
     sudo -u postgres createuser --interactive
     createdb ubuntu
 
+https://www.rosehosting.com/blog/how-to-install-phppgadmin-on-ubuntu-20-04/
+
+    sudo apt install phppgadmin php-pgsql -y
+    sudo vi /etc/apache2/sites-enabled/phppgadmin.conf
+    
+    Alias /phppgadmin /usr/share/phppgadmin
+    <Directory /usr/share/phppgadmin>
+       <IfModule mod_dir.c>
+           DirectoryIndex index.php
+       </IfModule>
+    AllowOverride None
+       <IfModule mod_php.c>
+          php_flag magicquotes_gpc Off
+          php_flag trackvars On
+       </IfModule>
+       <IfModule !mod_php.c>
+         <IfModule mod_actions.c>
+           <IfModule mod_cgi.c>
+              AddType application/x-httpd-php .php
+              Action application/x-httpd-php /cgi-bin/php
+           </IfModule>
+           <IfModule mod_cgid.c>
+              AddType application/x-httpd-php .php
+              Action application/x-httpd-php /cgi-bin/php
+           </IfModule>
+         </IfModule>
+       </IfModule>
+    </Directory>
+
 https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
 
     sudo apt install redis-server
