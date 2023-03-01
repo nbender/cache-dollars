@@ -33,7 +33,6 @@ BEGIN
     BEGIN
         v_value := v_input::DATE;
     EXCEPTION WHEN OTHERS THEN
-        RAISE NOTICE 'Invalid date value: "%".  Returning NULL.', v_input;
         RETURN NULL;
     END;
 RETURN v_value;
