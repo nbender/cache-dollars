@@ -2,7 +2,7 @@
 
 CREATE OR REPLACE FUNCTION convert_to_integer(v_input text)
 RETURNS INTEGER AS $$
-DECLARE v_int_value INTEGER DEFAULT NULL;
+DECLARE v_value INTEGER DEFAULT NULL;
 BEGIN
     BEGIN
         v_value := v_input::INTEGER;
