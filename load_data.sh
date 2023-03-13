@@ -6,15 +6,14 @@ for f in ~/git/pystock-data/????/????????.tar.gz; do
   d=`basename $f .tar.gz`
 
   echo "tar xvfzO $f prices.csv"
-  tar xvfzO $f prices.csv | psql -c "copy stage_prices (symbol, date, open, high, low, close, volume, adj_close) from stdin with (format csv, header)"
-  echo "tar xvfzO $f symbols.txt"
-  tar xvfzO $f symbols.txt | psql -c "copy stage_symbols (symbol, name) from stdin with (format text)"
+  echo '{ printf "%s,%s\\n", $0, "'$d'"; }' > ap.awk
+  tar xvfzO $f prices.csv | tr -d '\r' | awk -f ap.awk |
+      psql -c "copy stage_prices (symbol, date, open, high, low, close, volume, adj_close, file_date) from stdin with (format csv, header)"
 
-  echo "update load information"
-  psql -c "update stage_prices set update = true where file_date is null and date != (select max(date) from stage_prices where file_date is null)"
-  psql -c "update stage_prices set update = false where file_date is null and update is null"
-  psql -c "update stage_prices set file_date='$d' where file_date is null"
-  psql -c "update stage_symbols set file_date='$d' where file_date is null"
+  echo "tar xvfzO $f symbols.txt"
+  echo '{ printf "%s\t%s\\n", $0, "'$d'"; }' > ap.awk
+  tar xvfzO $f symbols.txt | tr -d '\r' | awk -f ap.awk | \
+      psql -c "copy stage_symbols (symbol, name, file_date) from stdin with (format text)"
 done
 
 psql -f conversions.sql
