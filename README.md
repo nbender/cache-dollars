@@ -13,6 +13,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ub
 
 https://www.rosehosting.com/blog/how-to-install-phppgadmin-on-ubuntu-20-04/
 
+    sudo apt update
     sudo apt install phppgadmin php-pgsql -y
     sudo apt install apache2 php libapache2-mod-php -y
     sudo vi /etc/apache2/sites-enabled/phppgadmin.conf
@@ -45,19 +46,20 @@ https://www.rosehosting.com/blog/how-to-install-phppgadmin-on-ubuntu-20-04/
 
     sudo vi /etc/apache2/conf-enabled/phppgadmin.conf ## allow connections
     sudo apachectl restart
-    psql -c 'ALTER USER ubuntu WITH PASSWORD 'test';'
+    psql -c "ALTER USER ubuntu WITH PASSWORD 'test';"
 
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
 
+    sudo apt update
     sudo apt install redis-server
-    sudo nano /etc/redis/redis.conf
     sudo vi /etc/redis/redis.conf
     sudo systemctl restart redis.service
     sudo systemctl status redis
 
 https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
 
+    sudo apt update
     wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
     sudo apt-get install gnupg
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
